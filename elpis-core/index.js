@@ -65,7 +65,7 @@ module.exports = {
 
     // 注册全局中间件
     try {
-      require(`${app.businessPath}.${sep}middleware.js`)(app)
+      require(`${app.businessPath}${sep}middleware.js`)(app)
       console.log(`[${app.options.name}] load global middleware done`)
     } catch {
       console.log('[global middleware error] middleware.js not found')
