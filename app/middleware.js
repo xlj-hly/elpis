@@ -9,7 +9,8 @@ module.exports = (app) => {
   const koaNunjucks = require('koa-nunjucks-2')
   app.use(
     koaNunjucks({
-      ext: 'tpl',
+      // ext: 'tpl',
+      ext: 'html',
       path: path.join(process.cwd(), 'app/public'),
       nunjucksConfig: {
         noCache: true,
@@ -17,4 +18,19 @@ module.exports = (app) => {
       },
     })
   )
+
+  // ctx.body 解析中间件
+  const bodyParser = require('koa-bodyparser')
+  app.use(
+    bodyParser({
+      formLimit: '1000mb',
+      enableTypes: ['json', 'form', 'text'],
+    })
+  )
+
+  // 错误处理中间件
+  app.use(app.middlewares.errorHandler)
+
+  // API 签名合法性校验中间件
+  app.use(app.middlewares.apiSignVerify)
 }
