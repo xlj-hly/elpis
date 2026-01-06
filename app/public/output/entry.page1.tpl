@@ -13,6 +13,7 @@
     <h1>page1</h1>
     <input id="env" value="{{ env }}" style="display: none;">
     <input id="options" value="{{ options }}" style="display: none;">
+    <button onclick="getProjectList()">获取项目列表</button>
 </body>
 
 <script type="text/javascript">
@@ -23,6 +24,16 @@
     }
     catch (e) {
         console.error(e)
+    }
+    const getProjectList = () => {
+        fetch('/api/project/list')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 </script>
 

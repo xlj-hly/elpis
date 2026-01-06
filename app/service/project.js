@@ -1,0 +1,18 @@
+module.exports = () => {
+  return class ProjectService {
+    async getList() {
+      return [
+        {
+          id: 1,
+          name: 'Project 1',
+          description: 'Description 1',
+        },
+        {
+          id: 2,
+          name: 'Project 2',
+          description: 'Description 2',
+        },
+      ]
+    }
+  }
+}
