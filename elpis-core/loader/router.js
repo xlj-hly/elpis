@@ -1,7 +1,6 @@
 const KoaRouter = require('koa-router')
 const glob = require('glob')
 const path = require('path')
-const { sep } = path
 
 /**
  * router loader
@@ -11,18 +10,21 @@ const { sep } = path
  */
 module.exports = (app) => {
   // 找到路由文件路径
-  const routerPath = path.resolve(app.businessPath, `.${sep}router`)
+  const routerPath = path.join(app.businessPath, 'router')
 
   // 实例化 KoaRouter
   const router = new KoaRouter()
 
   // 注册所有路由
-  const fileList = glob.sync(path.resolve(routerPath, `.${sep}**${sep}**.js`))
+  const fileList = glob.sync('**/*.js', {
+    cwd: routerPath,
+    absolute: true,
+  })
   fileList.forEach((file) => {
     // module.exports = (app, router) => {
     //   router.get('xxx/xxx', xxxController.xxx)
     // }
-    require(path.resolve(file))(app, router)
+    require(file)(app, router)
   })
 
   // 404 路由

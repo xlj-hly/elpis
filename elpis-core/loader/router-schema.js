@@ -1,6 +1,5 @@
 const glob = require('glob')
 const path = require('path')
-const { sep } = path
 
 /**
  * router-schema loader
@@ -20,13 +19,11 @@ const { sep } = path
 */
 module.exports = (app) => {
   // 读取 app/router-schema/**/**.js 下的所有文件
-  const routerSchemaPath = path.resolve(
-    app.businessPath,
-    `.${sep}router-schema`
-  )
-  const fileList = glob.sync(
-    path.resolve(routerSchemaPath, `.${sep}**${sep}**.js`)
-  )
+  const routerSchemaPath = path.join(app.businessPath, 'router-schema')
+  const fileList = glob.sync('**/*.js', {
+    cwd: routerSchemaPath,
+    absolute: true,
+  })
 
   // 注册所有 routerSchema, 使得可以 'app.routerSchema' 的方式访问
   let routerSchema = {}
@@ -34,7 +31,7 @@ module.exports = (app) => {
   fileList.forEach((file) => {
     routerSchema = {
       ...routerSchema,
-      ...require(path.resolve(file)),
+      ...require(file),
     }
   })
   app.routerSchema = routerSchema

@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const Koa = require('koa')
 const path = require('path')
-const { sep } = path // 兼容系统斜杠
 
 // 环境变量
 const env = require('./env')
@@ -33,7 +32,7 @@ module.exports = {
     app.baseDir = process.cwd()
 
     // 业务文件路径
-    app.businessPath = path.resolve(app.baseDir, `.${sep}app`)
+    app.businessPath = path.join(app.baseDir, 'app')
 
     // 初始化环境配置
     app.env = env()
@@ -65,7 +64,7 @@ module.exports = {
 
     // 注册全局中间件
     try {
-      require(`${app.businessPath}${sep}middleware.js`)(app)
+      require(path.join(app.businessPath, 'middleware.js'))(app)
       console.log(`[${app.options.name}] load global middleware done`)
     } catch {
       console.log('[global middleware error] middleware.js not found')
