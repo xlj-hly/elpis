@@ -7,7 +7,10 @@
     "lint": "eslint",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "cross-env ENV=local nodemon index.js",
+    "beta": "cross-env ENV=beta node index.js",
+    "prod": "cross-env ENV=production node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,15 +19,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.17.1",
+    "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "glob": "^13.0.0",
     "koa": "^3.1.1",
-    "koa-router": "^14.0.0"
+    "koa-bodyparser": "^4.4.1",
+    "koa-nunjucks-2": "^3.0.2",
+    "koa-router": "^14.0.0",
+    "koa-static": "^5.0.0",
+    "log4js": "^6.9.1",
+    "superagent": "^10.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
     "@eslint/js": "^9.39.2",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -32,6 +43,7 @@
     "globals": "^17.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "nodemon": "^3.1.11",
     "prettier": "^3.7.4"
   },
   "lint-staged": {

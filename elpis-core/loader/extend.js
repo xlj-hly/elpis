@@ -1,6 +1,5 @@
 const glob = require('glob')
 const path = require('path')
-const { sep } = path
 
 /**
  * extend loader
@@ -17,19 +16,16 @@ const { sep } = path
 */
 module.exports = (app) => {
   // 读取 app/extend/**.js 下的所有文件
-  const extendPath = path.resolve(app.businessPath, `.${sep}extend`)
-  const fileList = glob.sync(path.resolve(extendPath, `.${sep}**${sep}**.js`))
+  const extendPath = path.join(app.businessPath, 'extend')
+  const fileList = glob.sync('**/*.js', {
+    cwd: extendPath,
+    absolute: true,
+  })
 
   // 遍历所有文件目录，并加载到 app.extend
   fileList.forEach((file) => {
-    // 提取文件名
-    let name = path.resolve(file)
-
-    // 截取路径 app/extend/custom-extend => custom-extend
-    name = name.substring(
-      name.lastIndexOf(`extend${sep}`) + `extend${sep}`.length,
-      name.lastIndexOf(`.`)
-    )
+    // 提取文件名（不含扩展名）
+    let name = path.parse(path.relative(extendPath, file)).name
 
     // 把 '-' 改为驼峰 custom-extend => CustomExtend
     name = name.replace(/[_-][a-z]/gi, (s) => s.substring(1).toUpperCase())
@@ -43,6 +39,6 @@ module.exports = (app) => {
     }
 
     // 挂载 extend 到内存app对象上
-    app[name] = require(path.resolve(file))(app)
+    app[name] = require(file)(app)
   })
 }

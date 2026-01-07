@@ -1,5 +1,4 @@
 const path = require('path')
-const { sep } = path
 
 /**
  * config loader
@@ -16,13 +15,11 @@ const { sep } = path
  */
 module.exports = (app) => {
   // 找到 config/ 目录
-  const configPath = path.resolve(app.baseDir, `.${sep}config`)
+  const configPath = path.join(app.baseDir, 'config')
   // 获取 default.config
   let defaultConfig = {}
   try {
-    defaultConfig = require(
-      path.resolve(configPath, `.${sep}default.config.js`)
-    )
+    defaultConfig = require(path.join(configPath, 'default.config.js'))
   } catch {
     console.log(`[config loader error] config/default.config.js not found`)
   }
@@ -31,11 +28,11 @@ module.exports = (app) => {
   let envConfig = {}
   try {
     if (app.env.isLocal()) {
-      envConfig = require(path.resolve(configPath, `.${sep}local.config.js`))
+      envConfig = require(path.join(configPath, 'local.config.js'))
     } else if (app.env.isBeta()) {
-      envConfig = require(path.resolve(configPath, `.${sep}beta.config.js`))
+      envConfig = require(path.join(configPath, 'beta.config.js'))
     } else if (app.env.isProduction()) {
-      envConfig = require(path.resolve(configPath, `.${sep}prod.config.js`))
+      envConfig = require(path.join(configPath, 'prod.config.js'))
     }
   } catch {
     console.log(
