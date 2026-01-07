@@ -6,6 +6,9 @@ module.exports = (app) => {
      * @param {Object} ctx - 上下文
      */
     async getProjectList(ctx) {
+      const { proj_key: projKey } = ctx.query
+      console.log('projKey', projKey)
+
       const { project: ProjectService } = app.service
       const projectList = await ProjectService.getList()
       this.success(ctx, projectList)

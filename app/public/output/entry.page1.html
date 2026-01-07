@@ -29,8 +29,13 @@
       const st = Date.now()
       const signKey = '#^%@#*#*#*##*&@$$##**&'
       const signature = CryptoJS.HmacSHA256(signKey + st, signKey).toString()
+      const params = {
+        proj_key: '123456',
+      }
+      const url = `/api/project/list?${new URLSearchParams(params).toString()}`
+      // const url = '/api/project/list'
 
-      fetch('/api/project/list', {
+      fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
