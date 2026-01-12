@@ -13,6 +13,11 @@ module.exports = (app) => {
           name: 'Project 2',
           description: 'Description 2',
         },
+        {
+          id: 3,
+          name: 'Project 3',
+          description: 'Description 3',
+        },
       ]
     }
   }
