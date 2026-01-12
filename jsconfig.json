@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "checkJs": true,
+    "strict": true,
+    "skipLibCheck": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["./app/pages/*"],
+      "@common/*": ["./app/pages/common/*"],
+      "@widgets/*": ["./app/pages/widgets/*"],
+      "@store/*": ["./app/pages/store/*"]
+    }
+  },
+  "exclude": ["node_modules", "app/public/output", "dist"]
+}

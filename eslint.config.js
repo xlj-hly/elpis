@@ -1,11 +1,11 @@
-import { defineConfig } from 'eslint/config'
-import globals from 'globals'
-import eslint from '@eslint/js'
-import eslintPluginVue from 'eslint-plugin-vue'
-import eslintConfigPrettier from 'eslint-config-prettier'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+const { defineConfig } = require('eslint/config')
+const globals = require('globals')
+const eslint = require('@eslint/js')
+const eslintPluginVue = require('eslint-plugin-vue')
+const eslintConfigPrettier = require('eslint-config-prettier')
+const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended')
 
-export default defineConfig([
+module.exports = defineConfig([
   // 全局忽略配置
   { ignores: ['dist', 'node_modules'] },
 
@@ -24,6 +24,13 @@ export default defineConfig([
         ...globals.browser,
         ...globals.node,
       },
+    },
+  },
+  // index.vue 文件允许单单词组件名
+  {
+    files: ['**/index.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
     },
   },
 
