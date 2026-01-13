@@ -89,5 +89,7 @@ module.exports = {
       console.log('Server startup failed:', e)
       process.exit(1)
     }
+
+    return app
   },
 }

@@ -1,24 +1,17 @@
+/**
+ * @param {import('../../elpis-core').ElpisApp} app
+ */
 module.exports = (app) => {
   const BaseService = require('./base')(app)
+  const modelList = require('../../model/index')(app)
+
+  /**
+   * 获取所有模型和项目结构化数据
+   * @returns {Promise<any[]>}
+   */
   return class ProjectService extends BaseService {
-    async getList() {
-      return [
-        {
-          id: 1,
-          name: 'Project 1',
-          description: 'Description 1',
-        },
-        {
-          id: 2,
-          name: 'Project 2',
-          description: 'Description 2',
-        },
-        {
-          id: 3,
-          name: 'Project 3',
-          description: 'Description 3',
-        },
-      ]
+    async getModelList() {
+      return modelList
     }
   }
 }
