@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,4 +10,16 @@
   <body>
     <div id="root"></div>
   </body>
+  <script>
+    // 获取系统主题
+    const getSystemTheme = () => {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+    }
+
+    // 初始化主题：优先使用 localStorage，否则使用系统主题
+    const theme = localStorage.getItem('Theme') || getSystemTheme()
+    document.documentElement.className = theme
+  </script>
 </html>

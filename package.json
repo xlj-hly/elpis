@@ -12,7 +12,8 @@
     "beta": "cross-env ENV=beta node index.js",
     "prod": "cross-env ENV=production node index.js",
     "build:dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 node app/webpack/dev.js",
-    "build:prod": "node app/webpack/prod.js"
+    "build:prod": "node app/webpack/prod.js",
+    "test": "cross-env ENV=local mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
     "@eslint/js": "^9.39.2",
+    "assert": "^2.1.0",
     "babel-loader": "^10.0.0",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.2",
@@ -57,10 +59,12 @@
     "less-loader": "^12.3.0",
     "lint-staged": "^16.2.7",
     "mini-css-extract-plugin": "^2.9.4",
+    "mocha": "^11.7.5",
     "nodemon": "^3.1.11",
     "prettier": "^3.7.4",
     "sass-loader": "^16.0.6",
     "style-loader": "^4.0.0",
+    "supertest": "^7.2.2",
     "thread-loader": "^4.0.4",
     "vue": "^3.5.26",
     "vue-loader": "^17.4.2",

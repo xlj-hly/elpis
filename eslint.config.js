@@ -26,6 +26,15 @@ module.exports = defineConfig([
       },
     },
   },
+  // Mocha 文件配置
+  {
+    files: ['test/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.mocha,
+      },
+    },
+  },
   // index.vue 文件允许单单词组件名
   {
     files: ['**/index.vue'],

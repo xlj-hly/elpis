@@ -14,14 +14,18 @@ const configLoader = require('./loader/config')
 const extendLoader = require('./loader/extend')
 const routerLoader = require('./loader/router')
 
+/** @typedef {import('../types/elpis').EnvUtils} EnvUtils */
+/** @typedef {import('../types/elpis').AppOptions} AppOptions */
+/** @typedef {import('../types/elpis').ElpisApp} ElpisApp */
+
 module.exports = {
   /**
    * 启动服务
-   * @param {Object} options - 项目配置
-   * @param {string} options.name - 项目名称
-   * @param {string} options.homePage - 首页路径
+   * @param {AppOptions} [options] - 项目配置
    */
   start(options = {}) {
+    /** @type {ElpisApp} */
+    // @ts-ignore
     // Koa 实例
     const app = new Koa()
 
@@ -35,6 +39,7 @@ module.exports = {
     app.businessPath = path.join(app.baseDir, 'app')
 
     // 初始化环境配置
+    // @ts-ignore
     app.env = env()
     console.log(`[${app.options.name}] environment: ${app.env.get()}`)
 
@@ -76,7 +81,7 @@ module.exports = {
 
     // 启动服务
     try {
-      const port = process.env.PORT || 8080
+      const port = +(process.env.PORT || 8080)
       const host = process.env.HOST || '0.0.0.0'
       app.listen(port, host)
       console.log(`Server is running on http://${host}:${port}`)
@@ -84,5 +89,7 @@ module.exports = {
       console.log('Server startup failed:', e)
       process.exit(1)
     }
+
+    return app
   },
 }

@@ -14,7 +14,7 @@ module.exports = () => {
     },
     // 获取当前环境
     get() {
-      return ['local', 'beta', 'production'].includes(process.env.ENV)
+      return ['local', 'beta', 'production'].includes(process.env.ENV || '')
         ? process.env.ENV
         : 'local'
     },

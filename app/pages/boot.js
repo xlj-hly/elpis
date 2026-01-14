@@ -4,6 +4,7 @@ import './assets/custom.css'
 // 引入 element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // 引入 pinia
 import pinia from '@store/index'
