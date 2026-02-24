@@ -7,7 +7,7 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // 引入 pinia
-import pinia from '@store/index'
+import { pinia } from '@store/index'
 
 // 引入 router
 import { createRouter, createWebHashHistory } from 'vue-router'

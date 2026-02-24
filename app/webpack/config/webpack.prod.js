@@ -16,7 +16,7 @@ const webpackConfig = merge(BaseConfig, {
   output: {
     filename: 'js/[name]_[contenthash:8].bundle.js',
     path: path.resolve(process.cwd(), 'app', 'public', 'dist', 'prod'),
-    publicPath: '/dist/prod',
+    publicPath: '/dist/prod/',
     crossOriginLoading: 'anonymous', // 浏览器请求资源时不发送用户凭证
     clean: true, // 每次构建前清理输出目录
   },

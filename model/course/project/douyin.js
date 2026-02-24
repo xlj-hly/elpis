@@ -1,7 +1,7 @@
 module.exports = {
   name: '抖音课程',
   desc: '抖音课程系统',
-  homePage: '',
+  homePage: '/todo?proj_key=douyin&key=traffic',
   menu: [
     {
       key: 'traffic',

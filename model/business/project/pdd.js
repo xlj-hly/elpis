@@ -1,7 +1,7 @@
 module.exports = {
   name: '拼多多',
   desc: '拼多多电商系统',
-  homePage: '',
+  homePage: '/todo?proj_key=pdd&key=product',
   menu: [
     {
       key: 'order',
@@ -35,14 +35,24 @@ module.exports = {
             },
           },
           {
-            key: 'search',
+            key: 'sider-search',
             name: '信息搜索',
+            menuType: 'module',
             moduleType: 'iframe',
             iframeConfig: {
               path: 'https://www.baidu.com',
             },
           },
         ],
+      },
+    },
+    {
+      key: 'search',
+      name: '信息搜索',
+      menuType: 'module',
+      moduleType: 'iframe',
+      iframeConfig: {
+        path: 'https://www.baidu.com',
       },
     },
   ],

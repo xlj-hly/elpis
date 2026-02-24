@@ -98,6 +98,7 @@ module.exports = (app) => {
       }
       modelItem.project[projKey] = require(file)
       modelItem.project[projKey].key = projKey // 注入 projKey
+      modelItem.project[projKey].modelKey = modelKey // 注入 modelKey
     }
     if (type === 'model') {
       const modelKey = pathParts[0]
