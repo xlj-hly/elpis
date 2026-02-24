@@ -7,7 +7,7 @@ const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommen
 
 module.exports = defineConfig([
   // 全局忽略配置
-  { ignores: ['dist', 'node_modules'] },
+  { ignores: ['**/dist/**', '**/node_modules/**'] },
 
   // ESLint 推荐配置
   eslint.configs.recommended,

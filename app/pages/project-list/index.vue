@@ -43,7 +43,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import $curl from '@common/curl'
-import HeaderContainer from '@widgets/header-container/header-container.vue'
+import HeaderContainer from '@widgets/header-container/header-container'
 const loading = ref(false)
 const modelList = ref([])
 
@@ -65,11 +65,13 @@ const getModelList = async () => {
   }
 
   modelList.value = res.data
-  console.log(modelList.value)
 }
 
 const onEnter = (projItem) => {
-  console.log(`跳转到 ${projItem.name}`)
+  const { origin } = window.location
+  console.log(projItem)
+  console.log(`${origin}/view/dashboard#${projItem.homePage}`)
+  window.open(`${origin}/view/dashboard#${projItem.homePage}`)
 }
 </script>
 

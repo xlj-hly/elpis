@@ -144,6 +144,7 @@ module.exports = {
         },
         // 公共模块打包
         common: {
+          test: /[\\/]common|widgets[\\/]/,
           name: 'common', // 模块名
           minChunks: 2, // 最小引用次数
           minSize: 1, // 最小分割文件大小 (1 byte)

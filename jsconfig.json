@@ -8,6 +8,8 @@
     "skipLibCheck": false,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "allowJs": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./app/pages/*"],

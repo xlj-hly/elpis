@@ -17,7 +17,12 @@
         <el-row type="flex" align="middle" justify="end" class="setting-panel">
           <slot name="setting-content"></slot>
           <div class="avatar">
-            <img :src="avatar" alt="头像" class="avatar" />
+            <img
+              :src="avatar"
+              alt="头像"
+              class="avatar"
+              @error="handleImageError"
+            />
           </div>
           <el-dropdown @command="handleUserCommand">
             <span class="user-name">
@@ -50,13 +55,16 @@ defineProps({
 
 import SvgLogo from './svg-logo.vue'
 import { ref } from 'vue'
+import defaultAvatar from './assets/avatar.png'
 
 const userName = ref('admin')
-const avatar = ref('https://youke3.picui.cn/s1/2026/01/13/696601610edb5.png')
+const avatar = ref('https://s1.img-e.com/20260115/69685e2755eec.png')
 
 const handleUserCommand = (e) => {
   console.log(e)
 }
+
+const handleImageError = () => (avatar.value = defaultAvatar)
 </script>
 
 <style lang="less" scoped>
@@ -67,7 +75,7 @@ const handleUserCommand = (e) => {
 
   .header {
     max-height: 120px;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid var(--el-text-color-primary);
 
     .header-row {
       height: 60px;
